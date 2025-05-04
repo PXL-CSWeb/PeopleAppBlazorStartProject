@@ -33,6 +33,7 @@ app.UseAuthorization();
 
 app.MapDefaultControllerRoute();
 app.MapBlazorHub();
+app.MapFallbackToController("/manage/{*path:nonfile}", "Index", "Blazor");
 
 SeedData.SeedDatabase(app);
 app.Run();

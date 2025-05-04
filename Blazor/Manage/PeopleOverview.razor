@@ -1,0 +1,47 @@
+﻿@page "/manage/"
+@page "/manage/people"
+@inherits OwningComponentBase
+
+<h4 class="bg-primary text-white text-center p-2">Manage People</h4>
+<table class="table table-sm table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Dept</th>
+            <th>Location</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Person p in People)
+        {
+            <tr>
+                <td>@p.Id</td>
+                <td>@p.Surname, @p.Firstname</td>
+                <td>@p.Department.Name</td>
+                <td>@p.Location.City, @p.Location.State</td>
+                <td>
+                    <NavLink class="btn btn-sm btn-warning" href="@GetEditUrl(p.Id)">Edit</NavLink>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+
+    private IPersonRepository PersonRepository { get; set; }
+
+    protected override void OnInitialized()
+    {
+        PersonRepository = ScopedServices.GetRequiredService<IPersonRepository>();
+    }
+
+    public IEnumerable<Person> People => PersonRepository.GetAll();
+
+    public string GetEditUrl(long personId)
+    {
+        return $"/manage/people/edit/{personId}";
+    }
+}
