@@ -25,5 +25,11 @@ namespace PeopleApp.Controllers
                 SelectedCity = selectedCity
             });
         }
+
+        public IActionResult BlazorPeopleList()
+        {
+            return View();
+        }
+
     }
 }

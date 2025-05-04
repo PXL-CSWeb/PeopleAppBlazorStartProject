@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddServerSideBlazor();
 var connString = builder.Configuration.GetConnectionString("PeopleConnection");
 builder.Services.AddDbContext<DataContext>(options =>
 {
@@ -31,6 +32,7 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapDefaultControllerRoute();
+app.MapBlazorHub();
 
 SeedData.SeedDatabase(app);
 app.Run();
