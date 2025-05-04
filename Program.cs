@@ -30,7 +30,7 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
 
-app.MapDefaultControllerRoute();
+app.MapDefaultControllerRoute(); 
 
 SeedData.SeedDatabase(app);
 app.Run();
